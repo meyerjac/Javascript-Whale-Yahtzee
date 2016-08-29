@@ -64,8 +64,22 @@ $(document).ready(function() {
     $("#die3").text(game.players[game.turn].diceValues[2]);
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
+    game.players[game.turn].diceIndex = [];
+      });
 
-
-  });
-
+    $("#die1").click(function(){
+      game.players[game.turn].diceIndex.push(0);
+    });
+    $("#die2").click(function(){
+      game.players[game.turn].diceIndex.push(1);
+    });
+    $("#die3").click(function(){
+      game.players[game.turn].diceIndex.push(2);
+    });
+    $("#die4").click(function(){
+      game.players[game.turn].diceIndex.push(3);
+    });
+    $("#die5").click(function(){
+      game.players[game.turn].diceIndex.push(4);
+    });
 });
