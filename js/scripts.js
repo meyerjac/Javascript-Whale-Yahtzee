@@ -34,7 +34,7 @@ Player.prototype.findValues = function() {
   };
 };
 
-Player.prototype.roundScore = function() {
+Player.prototype.turnScore = function() {
   return this.countNumber * this.countMultiple;
   this.countNumber = 0;
 }
@@ -55,5 +55,17 @@ Game.prototype.switchTurn = function() {
 
 // UI logic
 $(document).ready(function() {
+  var game = new Game(2);
+  game.createPlayers();
+  $("#rollButton").click(function(){
+    game.players[game.turn].roll();
+    $("#die1").text(game.players[game.turn].diceValues[0]);
+    $("#die2").text(game.players[game.turn].diceValues[1]);
+    $("#die3").text(game.players[game.turn].diceValues[2]);
+    $("#die4").text(game.players[game.turn].diceValues[3]);
+    $("#die5").text(game.players[game.turn].diceValues[4]);
+
+
+  });
 
 });
