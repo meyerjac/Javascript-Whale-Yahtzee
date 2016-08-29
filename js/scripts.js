@@ -8,7 +8,7 @@ function Game(numberOfPlayers, players, turn) {
 function Player(round, diceValues, diceIndex, countNumber, countMultiple, aces, twos, threes, fours, fives, sixes, score) {
   this.round = round;
   this.diceValues = [];
-  this.diceIndex = [];
+  this.diceIndex = [0,1,2,3,4];
   this.countNumber = countNumber;
   this.countMultiple = 0;
   this.aces = aces;
