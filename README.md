@@ -1,6 +1,6 @@
-# _West Coast Whale Watching Locations_
+# _Whale Yatzhee_
 
-#### _An application to identify ideal whale watching locations, September 1 2016_
+#### _An application to play Yatzhee, September 1 2016_
 
 #### By _**NAMES HERE**_
 
