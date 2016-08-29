@@ -20,6 +20,8 @@ function Player(round, diceValues, diceIndex, countNumber, countMultiple, aces, 
   this.score = score;
 };
 
+var rollArray = [];
+
 Player.prototype.roll = function() {
   for (var i = 0; i < this.diceIndex.length; i++) {
     this.diceValues[this.diceIndex[i]] = Math.floor((Math.random() * 6) + 1);
@@ -54,6 +56,3 @@ Game.prototype.switchTurn = function() {
 };
 
 // UI logic
-$(document).ready(function() {
-
-});
