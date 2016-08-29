@@ -7,9 +7,63 @@
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Whale Yatzhee</title>
+    <link <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline|Sigmar+One" rel="stylesheet">
+    <title> Whale Yahtzee</title>
   </head>
   <body>
-
+    <img src="img/dolphin.JPG" alt="dolphin">
+    <h1 class="jumbotron">Whale Yahtzee!</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1 player1ScoreCard">
+          <h2>Player 1</h2>
+          <div class="col-md-6">
+            <p>Aces: <span id="player1Aces"></span></p>
+            <p>Twos: <span id="player1Twos"></span></p>
+            <p>Threes: <span id="player1Threes"></span></p>
+            <p>Fours: <span id="player1Fours"></span></p>
+            <p>Fives: <span id="player1Fives"></span></p>
+            <p>Sixes: <span id="player1Sixes"></span></p>
+            <p><strong>Total:</strong></p>
+            <p>
+              If total is 63 or More, get a <strong>Bonus</strong> of 35 points!
+            </p>
+          </div>
+        </div>
+        <div class="col-md-5 col-md-offset-1 player2ScoreCard">
+          <h2>Player 2</h2>
+          <div class="col-md-6">
+            <p>Aces: <span id="player2Aces"></span></p>
+            <p>Twos: <span id="player2Twos"></span></p>
+            <p>Threes: <span id="player2Threes"></span></p>
+            <p>Fours: <span id="player2Fours"></span></p>
+            <p>Fives: <span id="player2Fives"></span></p>
+            <p>Sixes: <span id="player2Sixes"></span></p>
+            <p><strong>Total:</strong></p>
+            <p>
+                If total is 63 or More, get a <strong>Bonus</strong> of 35 points!
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row dice-boxes">
+        <h3>Dice:
+          <span id="die1">3</span>
+          <span id="die2">4</span>
+          <span id="die3">4</span>
+          <span id="die4">3</span>
+          <span id="die5">3</span>
+        </h3>
+      </div>
+      <br>
+      <button type="submit" name="roll" class="btn-lg btn-success" id="rollButton">Roll them dice!</button><br>
+      <button class="btn-lg btn-primary" id="useAsAcesButton">Use as Aces!</button><br>
+      <button class="btn-lg btn-primary" id="useAsTwosButton">Use as Twos</button><br>
+      <button class="btn-lg btn-primary" id="useAsThreesButton">Use as Threes</button><br>
+      <button class="btn-lg btn-primary" id="useAsFoursButton">Use as Fours</button><br>
+      <button class="btn-lg btn-primary" id="useAsFivesButton">Use as Fives</button><br>
+      <button class="btn-lg btn-primary" id="useAsSixesButton">Use as Sixes</button><br>
+    </div>
   </body>
 </html>

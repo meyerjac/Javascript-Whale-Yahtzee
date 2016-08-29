@@ -1,0 +1,27 @@
+body {
+  font-family: 'Sigmar One', cursive;
+}
+
+h3 {
+  font-size: 75px;
+}
+
+.jumbotron {
+  text-align: center;
+}
+.dice-boxes {
+  border: black dashed 3px;
+  font-size: 5em
+}
+
+#die1, #die2, #die3, #die4, #die5 {
+  border: black solid 3px;
+  padding: 20px;
+  display: inline-block;
+  margin-left: 50px
+}
+
+.btn-primary  {
+  margin-top: 10px;
+
+}
