@@ -3,7 +3,7 @@ body {
   background-image:  url("http://meche.mit.edu/sites/default/files/styles/hero/public/slides/Research%20Oceans.jpg?itok=okSrE16D");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  /*background-position: center;*/
   align-items: center;
 
 
@@ -51,6 +51,10 @@ img {
 .col-md-6 {
   font-size: 20px;
   color: #660000;
+}
+
+.dice-boxes {
+display: none;
 }
 
 .player1ScoreCard{

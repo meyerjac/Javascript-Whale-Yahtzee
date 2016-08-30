@@ -63,7 +63,7 @@ $(document).ready(function() {
     }
   console.log(game);
   setTimeout(function(){$('h1').show();
-    $("h1").addClass('animated bounceIn');}, 600);
+    $('h1').addClass('animated bounceIn');}, 600);
 
   $("form").submit(function(event) {
     event.preventDefault();
@@ -77,6 +77,7 @@ $(document).ready(function() {
   });
 
   $("#rollButton").click(function(){
+    $(".dice-boxes").show();
     game.players[game.turn].roll();
     $("#die1").text(game.players[game.turn].diceValues[0]);
     $("#die2").text(game.players[game.turn].diceValues[1]);
@@ -91,6 +92,7 @@ $(document).ready(function() {
     $("#die5").css("background-color", "inherit");
     if (game.players[game.turn].round >= 3) {
       $("#rollButton").hide();
+
     }
   });
     $("#die1").click(function(){
