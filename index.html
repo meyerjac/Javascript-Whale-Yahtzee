@@ -11,6 +11,34 @@
     <title> Whale Yahtzee</title>
   </head>
   <body>
+    <header class="page-header">
+      <ul id="navBarList" class="nav nav-pills pull-right">
+        <li data-toggle="modal" data-target="#myModal">Game Rules</li>
+      </ul>
+    <!-- "Rules" Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" id="aboutPage">
+          <div class="modal-header">
+            <h2 class="modal-title">Whale Yatzhee Rules</h2>
+          </div>
+          <div class="modal-body">
+            <h4>Player with most points wins!</h4>
+            <ul>
+              <li>Player 1 goes first</li>
+              <li>Click the "Roll" button to roll a five virtual six-sided die</li>
+              <li>Values 1-6 can be claimed for the respective point value once per game or rerolled to go for another set</li>
+              <li>To end turn, either roll the maximum of three times or select "End Turn" button if you are happy with your selection- this will add the "Roll Total" to the player's score</li>
+              <li>Game is over after each player has played six turns, selecting each number once, highest total wins</li>
+              <li>Have fun! :D</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <h1 class="jumbotron"><img src="img/dolphin.JPG" alt="dolphin">Whale Yahtzee!<img src="img/yahtzee.jpg" alt="yahtzee"></h1>
