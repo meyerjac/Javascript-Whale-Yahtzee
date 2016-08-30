@@ -2,17 +2,26 @@ body {
   font-family: 'Sigmar One', cursive;
   background-image:  url("http://meche.mit.edu/sites/default/files/styles/hero/public/slides/Research%20Oceans.jpg?itok=okSrE16D");
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
-  background-size: cover;
+  align-items: center;
 
+
+}
+
+h1 {
+  display: none;
 }
 h3 {
   font-size: 75px;
 }
 
 img {
-  height: 150px;
-  width: auto;
+  height: auto;
+  width: 500px;
+  display: block;
+  margin-left: auto;
+ margin-right: auto
 }
 
 .jumbotron {
@@ -24,13 +33,13 @@ img {
 .container {
   background-color: rgba(245, 245, 245, 0.6);
   padding: 15px;
+  text-align: center;
 }
+
 
 .dice-boxes {
   border: black dashed 3px;
   font-size: 5em;
-  background-color:
-
 }
 
 
@@ -40,6 +49,18 @@ img {
 }
 
 .col-md-6 {
+  font-size: 20px;
+  color: #660000;
+}
+
+.player1ScoreCard{
+  border: black dashed 3px;
+  font-size: 20px;
+  color: #660000;
+}
+
+.player2ScoreCard{
+  border: black dashed 3px;
   font-size: 20px;
   color: #660000;
 }
@@ -67,6 +88,16 @@ img {
 }
 
 #navBarList:hover {
+  text-decoration: underline;
+}
+
+#player1Display{
+  color: black ;
+  text-decoration: underline;
+}
+
+#player2Display {
+  color: black ;
   text-decoration: underline;
 }
 

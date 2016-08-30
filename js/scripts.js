@@ -62,6 +62,8 @@ $(document).ready(function() {
       game.createPlayers();
     }
   console.log(game);
+  setTimeout(function(){$('h1').show();
+    $("h1").addClass('animated bounceIn');}, 600);
 
   $("form").submit(function(event) {
     event.preventDefault();
