@@ -84,7 +84,7 @@ $(document).ready(function() {
     $("#die3").text(game.players[game.turn].diceValues[2]);
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
-    game.players[game.turn].diceIndex = [];
+
     $("#die1").css("background-color", "inherit");
     $("#die2").css("background-color", "inherit");
     $("#die3").css("background-color", "inherit");
