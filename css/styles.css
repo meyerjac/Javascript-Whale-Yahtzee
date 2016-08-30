@@ -10,6 +10,11 @@ h3 {
   font-size: 75px;
 }
 
+img {
+  height: 150px;
+  width: auto;
+}
+
 .jumbotron {
   text-align: center;
   background-color: rgba(245, 245, 245, 0.6);
@@ -20,28 +25,42 @@ h3 {
   background-color: rgba(245, 245, 245, 0.6);
   padding: 15px;
 }
+
 .dice-boxes {
   border: black dashed 3px;
-  font-size: 5em
+  font-size: 5em;
+  background-color:
+
 }
 
-#die1, #die2, #die3, #die4, #die5 {
-  border: black solid 3px;
-  padding: 20px;
-  display: inline-block;
-  margin-left: 50px
+
+
+#die2Color {
+  background-color: red;
 }
+
+
 
 .btn-primary  {
   margin-top: 10px;
 
 }
 
-img {
-  height: 150px;
-  width: auto;
-}
 .col-md-6 {
   font-size: 20px;
   color: #660000;
+}
+
+#die1, #die2, #die3, #die4, #die5 {
+  cursor: pointer;
+  border: black solid 3px;
+  padding: 20px;
+  display: inline-block;
+  margin-left: 50px;
+
+
+}
+
+#die1:active, #die2:active, #die3:active, #die4:active, #die5:active  {
+  color: red;
 }
