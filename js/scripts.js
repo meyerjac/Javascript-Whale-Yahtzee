@@ -101,17 +101,15 @@ $(document).ready(function() {
   $("#rollButton").click(function(){
     $(".dice-boxes").show();
     game.players[game.turn].roll();
-<<<<<<< HEAD
     $("#die1").text(game.players[game.turn].diceValues[0]);
     $("#die2").text(game.players[game.turn].diceValues[1]);
     $("#die3").text(game.players[game.turn].diceValues[2]);
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
 
-=======
+
     displayDice();
     game.players[game.turn].diceIndex = [];
->>>>>>> master
     $("#die1").css("background-color", "inherit");
     $("#die2").css("background-color", "inherit");
     $("#die3").css("background-color", "inherit");
