@@ -83,7 +83,6 @@ $(document).ready(function() {
     var player2Input = $("#player2Name").val();
     $("#player1Display").text(player1Input);
     $("#player2Display").text(player2Input);
-
   });
 
   $("#rollButton").click(function(){
@@ -137,4 +136,37 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+  $("#useAsThreesButton").click(function(){
+    game.players[game.turn].countNumber = 3;
+    game.players[game.turn].findValues();
+    game.players[game.turn].threes = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Threes").append(game.players[game.turn].threes);
+    game.switchTurn();
+    displayDice();
+});
+$("#useAsFoursButton").click(function(){
+  game.players[game.turn].countNumber = 4;
+  game.players[game.turn].findValues();
+  game.players[game.turn].fours = game.players[game.turn].turnScore()
+  $("#player" + (game.turn+1) + "Fours").append(game.players[game.turn].fours);
+  game.switchTurn();
+  displayDice();
+});
+  $("#useAsFivesButton").click(function(){
+    game.players[game.turn].countNumber = 5;
+    game.players[game.turn].findValues();
+    game.players[game.turn].fives = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Fives").append(game.players[game.turn].fives);
+    game.switchTurn();
+    displayDice();
+});
+$("#useAsSixesButton").click(function(){
+  game.players[game.turn].countNumber = 6;
+  game.players[game.turn].findValues();
+  game.players[game.turn].sixes = game.players[game.turn].turnScore()
+  $("#player" + (game.turn+1) + "Sixes").append(game.players[game.turn].sixes);
+  game.switchTurn();
+  displayDice();
+});
+
 });
