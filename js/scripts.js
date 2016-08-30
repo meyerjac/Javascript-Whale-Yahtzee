@@ -63,6 +63,17 @@ $(document).ready(function() {
     }
   console.log(game);
 
+  $("form").submit(function(event) {
+    event.preventDefault();
+    $("#playerNameInput").fadeOut();
+    setTimeout(function(){$("#scoreCards").fadeIn();}, 450);
+    var player1Input = $("#player1Name").val();
+    var player2Input = $("#player2Name").val();
+    $("#player1Display").text(player1Input);
+    $("#player2Display").text(player2Input);
+
+  });
+
   $("#rollButton").click(function(){
     game.players[game.turn].roll();
     $("#die1").text(game.players[game.turn].diceValues[0]);

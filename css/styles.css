@@ -58,6 +58,10 @@ img {
   background-color: #d7faeb;
 }
 
+#scoreCards {
+  display: none;
+}
+
 #navBarList {
   cursor: pointer;
 }
