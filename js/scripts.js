@@ -71,38 +71,45 @@ $(document).ready(function() {
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
     game.players[game.turn].diceIndex = [];
+    $("#die1").css("background-color", "inherit");
+    $("#die2").css("background-color", "inherit");
+    $("#die3").css("background-color", "inherit");
+    $("#die4").css("background-color", "inherit");
+    $("#die5").css("background-color", "inherit");
     if (game.players[game.turn].round >= 3) {
       $("#rollButton").hide();
     }
   });
+    $("#die1").click(function(){
+      $("#die1").css("background-color", "lightblue");
+      game.players[game.turn].diceIndex.push(0);
+    });
+    $("#die2").click(function(){
+      $("#die2").css("background-color", "lightblue");
+      game.players[game.turn].diceIndex.push(1);
+    });
+    $("#die3").click(function(){
+      $("#die3").css("background-color", "lightblue");
+      game.players[game.turn].diceIndex.push(2);
+    });
+    $("#die4").click(function(){
+      $("#die4").css("background-color", "lightblue");
+      game.players[game.turn].diceIndex.push(3);
+    });
+    $("#die5").click(function(){
+      $("#die5").css("background-color", "lightblue");
+      game.players[game.turn].diceIndex.push(4);
+    });
+    $("#useAsAcesButton").click(function(){
+      game.players[game.turn].countNumber = 1;
+      game.players[game.turn].findValues();
+      game.players[game.turn].aces = game.players[game.turn].turnScore()
+      $("#player" + (game.turn+1) + "Aces").append(game.players[game.turn].aces);
+      game.switchTurn();
 
-  $("#die1").click(function(){
-    game.players[game.turn].diceIndex.push(0);
-  });
-  $("#die2").click(function(){
-    game.players[game.turn].diceIndex.push(1);
-  });
-  $("#die3").click(function(){
-    game.players[game.turn].diceIndex.push(2);
-  });
-  $("#die4").click(function(){
-    game.players[game.turn].diceIndex.push(3);
-  });
-  $("#die5").click(function(){
-    game.players[game.turn].diceIndex.push(4);
-  });
-
-  $("#useAsAcesButton").click(function(){
-    game.players[game.turn].countNumber = 1;
-    game.players[game.turn].findValues();
-    game.players[game.turn].aces = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Aces").append(game.players[game.turn].aces);
-    game.switchTurn();
-
-    console.log(game.players[game.turn].diceIndex);
-    console.log(game.players[game.turn].round);
-    $("#rollButton").show();
-    $(".highlightedplayer1").hide();
-  });
-
+      console.log(game.players[game.turn].diceIndex);
+      console.log(game.players[game.turn].round);
+      $("#rollButton").show();
+      $(".highlightedplayer1").hide();
+    });
 });
