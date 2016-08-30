@@ -21,8 +21,6 @@ function Player(playerName, round, diceValues, diceIndex, countNumber, countMult
   this.score = score;
 };
 
-var rollArray = [];
-
 Player.prototype.roll = function() {
   for (var i = 0; i < this.diceIndex.length; i++) {
     this.diceValues[this.diceIndex[i]] = Math.floor((Math.random() * 6) + 1);
@@ -44,7 +42,7 @@ Player.prototype.turnScore = function() {
 }
 
 Game.prototype.createPlayers = function(){
-  var myPlayer = new Player();
+  var myPlayer = new Player("Player " + (this.numberOfPlayers+1));
   this.players[this.numberOfPlayers] = myPlayer;
   this.numberOfPlayers++;
 };
@@ -59,9 +57,12 @@ Game.prototype.switchTurn = function() {
 
 // UI logic
 $(document).ready(function() {
-  var game = new Game(2);
-  game.createPlayers();
-  console.log(game.numberOfPlayers);
+  var game = new Game();
+  for (var i = 0; i < 2; i++) {
+      game.createPlayers();
+    }
+  console.log(game);
+
   $("#rollButton").click(function(){
     game.players[game.turn].roll();
     $("#die1").text(game.players[game.turn].diceValues[0]);
@@ -96,7 +97,6 @@ $(document).ready(function() {
     game.players[game.turn].findValues();
     game.players[game.turn].aces = game.players[game.turn].turnScore()
     $("#player" + (game.turn+1) + "Aces").append(game.players[game.turn].aces);
-    $("#useAsAcesButton").hide();
     game.switchTurn();
 
     console.log(game.players[game.turn].diceIndex);
