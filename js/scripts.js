@@ -32,6 +32,7 @@ function Player(playerName, round, diceValues, diceIndex, countNumber, countMult
   this.countNumber = 0;
   this.countMultiple = 0;
   this.scores = [[this.aces, false], [this.twos, false], [this.threes, false], [this.fours, false], [this.fives, false], [this.sixes, false]];
+  this.topTotal = 0;
 };
 
 Player.prototype.roll = function() {
@@ -53,6 +54,18 @@ Player.prototype.turnScore = function() {
   return this.countNumber * this.countMultiple;
   this.countNumber = 0;
 }
+
+Game.prototype.topTotals= function () {
+  debugger;
+  for (var i = 0; i < 6; i++) {
+    if (this.players[this.turn].scores[i][1] === true) {
+      this.players[this.turn].topTotal += this.players[this.turn].scores[i][0];
+      console.log(this.players[this.turn].scores[i][0]);
+      console.log(this.players[this.turn].aces);
+    }
+  };
+  return this.players[this.turn].topTotal;
+};
 
 // UI logic
 Game.prototype.hideButtons = function() {
@@ -82,6 +95,7 @@ $(document).ready(function() {
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
     $("#rollButton").show();
+
   }
 
   $("form").submit(function(event) {
@@ -135,6 +149,9 @@ $(document).ready(function() {
     game.players[game.turn].aces = game.players[game.turn].turnScore()
     $("#player" + (game.turn+1) + "Aces").append(game.players[game.turn].aces);
     game.players[game.turn].scores[0][1] =  true;
+
+    game.topTotals();
+    $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
     displayDice();
   });
