@@ -34,13 +34,6 @@ img {
 }
 
 
-
-#die2Color {
-  background-color: red;
-}
-
-
-
 .btn-primary  {
   margin-top: 10px;
 
@@ -49,6 +42,32 @@ img {
 .col-md-6 {
   font-size: 20px;
   color: #660000;
+}
+
+.modal-header{
+  font-size: 1.5em;
+  background-color: #d7faeb;
+}
+
+.modal-body{
+  font-size: 1.5em;
+  background-color: #fdf6ee;
+}
+.modal-footer{
+  font-size: 1.5em;
+  background-color: #d7faeb;
+}
+
+#scoreCards {
+  display: none;
+}
+
+#navBarList {
+  cursor: pointer;
+}
+
+#navBarList:hover {
+  text-decoration: underline;
 }
 
 #die1, #die2, #die3, #die4, #die5 {

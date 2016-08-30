@@ -65,6 +65,7 @@ $(document).ready(function() {
   for (var i = 0; i < 2; i++) {
       game.createPlayers();
     }
+
   var displayDice = function() {
     $("#die1").text(game.players[game.turn].diceValues[0]);
     $("#die2").text(game.players[game.turn].diceValues[1]);
@@ -73,6 +74,17 @@ $(document).ready(function() {
     $("#die5").text(game.players[game.turn].diceValues[4]);
     $("#rollButton").show();
   }
+
+  $("form").submit(function(event) {
+    event.preventDefault();
+    $("#playerNameInput").fadeOut();
+    setTimeout(function(){$("#scoreCards").fadeIn();}, 450);
+    var player1Input = $("#player1Name").val();
+    var player2Input = $("#player2Name").val();
+    $("#player1Display").text(player1Input);
+    $("#player2Display").text(player2Input);
+
+  });
 
   $("#rollButton").click(function(){
     game.players[game.turn].roll();

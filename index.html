@@ -11,14 +11,63 @@
     <title> Whale Yahtzee</title>
   </head>
   <body>
+    <header class="page-header">
+      <ul id="navBarList" class="nav nav-pills pull-right">
+        <li data-toggle="modal" data-target="#myModal">Game Rules</li>
+      </ul>
+    <!-- "Rules" Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" id="aboutPage">
+          <div class="modal-header">
+            <h2 class="modal-title">Whale Yatzhee Rules</h2>
+          </div>
+          <div class="modal-body">
+            <h4>Player with most points wins!</h4>
+            <ul>
+              <li>Player 1 goes first</li>
+              <li>Click the "Roll" button to roll a five virtual six-sided die</li>
+              <li>Values 1-6 can be claimed for the respective point value once per game or rerolled to go for another set</li>
+              <li>To end turn, either roll the maximum of three times or select "End Turn" button if you are happy with your selection- this will add the "Roll Total" to the player's score</li>
+              <li>Game is over after each player has played six turns, selecting each number once, highest total wins</li>
+              <li>Have fun! :D</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <h1 class="jumbotron"><img src="img/dolphin.JPG" alt="dolphin">Whale Yahtzee!<img src="img/yahtzee.jpg" alt="yahtzee"></h1>
-    <div class="container img-rounded">
+    <div id="playerNameInput" class="container img-rounded">
+      <form>
+          <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="player1Name">Player 1 enter your name:</label>
+              <input class="form-control" type="text" id="player1Name" placeholder="Enter your name." required></input>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="player2Name">Player 2 enter your name:</label>
+              <input class="form-control" type="text" id="player2Name" placeholder="Enter your name." required></input>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <button id="playerNameSubmit" type="submit" class="btn btn-primary">LET'S PLAY YAHTZEE ! </button>
+     </form>
+    </div>
+    <div id="scoreCards" class="container img-rounded">
       <div class="row">
         <div class="col-md-5 col-md-offset-1 player1ScoreCard">
         <div class="highlightedplayer1">
-          <h2>Player 1</h2></div>
+          <h2><span id="player1Display"></span></h2></div>
           <div class="col-md-6">
             <p>Aces: <span id="player1Aces"></span></p>
             <p>Twos: <span id="player1Twos"></span></p>
@@ -34,7 +83,7 @@
         </div>
         <div class="col-md-5 col-md-offset-1 player2ScoreCard">
           <div class="highlightedplayer2">
-            <h2>Player 2</h2></div>
+            <h2><span id="player2Display"></span></h2></div>
           <div class="col-md-6">
             <p>Aces: <span id="player2Aces"></span></p>
             <p>Twos: <span id="player2Twos"></span></p>
