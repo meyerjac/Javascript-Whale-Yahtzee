@@ -67,6 +67,7 @@ Player.prototype.roll = function() {
   this.round++;
 };
 
+
 Player.prototype.findValues = function() {
   for (var i = 0; i < 5; i++) {
     if (this.diceValues[i] === this.countNumber) {
@@ -74,6 +75,40 @@ Player.prototype.findValues = function() {
     }
   };
 };
+
+Player.prototype.largeStraight = function() {
+  this.diceValues.sort();
+  this.diceValues.toString();
+  console.log(this.diceValues.toString());
+  var largeStraightArr1 = [1, 2, 3, 4, 5];
+  var largeStraightArr2 = [2, 3, 4, 5, 6];
+if (this.diceValues.toString() === largeStraightArr1.toString()) {
+  return true
+}  if (this.diceValues.toString() === largeStraightArr2.toString()) {
+  return true
+} else {return (false)
+}
+}
+
+Player.prototype.yahtzee = function() {
+  if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4]) && (this.diceValues[1]=== this.diceValues[4])) {
+    return true
+  } else  {
+    return false
+  }
+}
+
+Player.prototype.fullHouse = function() {
+  debugger;
+  this.diceValues.sort();
+  if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4])) {
+    return true
+  } if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[1] === this.diceValues[2]) && (this.diceValues[3] === this.diceValues[4])) {
+    return true
+  } else {
+    return false
+  }
+}
 
 Player.prototype.turnScore = function() {
   return this.countNumber * this.countMultiple;
@@ -88,6 +123,7 @@ Game.prototype.hideButtons = function() {
   $("#4sButton").show();
   $("#5sButton").show();
   $("#6sButton").show();
+  $("#largeStraightButton").show();
 
   for (var i = 0; i < 6; i++) {
     if (this.players[this.turn].scores[i][1] === true) {
@@ -302,6 +338,63 @@ $(document).ready(function() {
     game.gameOver();
     game.switchTurn();
     displayDice();
+  });
+
+  $("#largeStraightButton").click(function(){
+    game.players[game.turn].largeStraight();
+      if (game.players[game.turn].largeStraight() === true) {
+        $("#player" + (game.turn+1) + "LargeStraight").append(40);
+        game.switchTurn();
+        displayDice();
+    } if (game.players[game.turn].largeStraight() === false) {
+        var largeStraightPrompt = prompt("you do not have a large straight, do you wish to continue and take a zero for this turn? (yes/no)")
+        if (largeStraightPrompt.toLowerCase() === "yes") {
+            alert("okay you fool")
+            $("#player" + (game.turn+1) + "LargeStraight").append(0);
+            game.switchTurn();
+            displayDice();
+      }
+        if (largeStraightPrompt.toLowerCase() === "no") {
+            alert ("good choice, select another category")
+      }
+    }
+  });
+  $("#yahtzeeButton").click(function(){
+    if (game.players[game.turn].yahtzee() === true) {
+      $("#player" + (game.turn+1) + "Yahtzee").append(50);
+      game.switchTurn();
+      displayDice();
+  } if (game.players[game.turn].yahtzee() === false) {
+      var yahtzeePrompt = prompt("you do not have a Yahtzee, an average player has about a 1:1200 chance of a yathzee on any given roll...you are no differnet. do you wish to take a zero for your yahtzee turn? (yes/no)")
+      if (yahtzeePrompt.toLowerCase() === "yes") {
+          alert("okay you fool")
+          $("#player" + (game.turn+1) + "yahtzee").append(0);
+          game.switchTurn();
+          displayDice();
+      }
+      if (yahtzeePrompt.toLowerCase() === "no") {
+          alert ("oooo, being risky eh?")
+      }
+    }
+  });
+
+  $("#fullHouseButton").click(function(){
+    if (game.players[game.turn].fullHouse() === true) {
+      $("#player" + (game.turn+1) + "FullHouse").append(25);
+      game.switchTurn();
+      displayDice();
+  } if (game.players[game.turn].fullHouse() === false) {
+      var fullHousePrompt = prompt("you do not have a FullHouse, have you ever played Yathzee? C'mon now. do you want to take a 0 on fullHouse? (yes/no)")
+      if (fullHousePrompt.toLowerCase() === "yes") {
+          alert("okay, your loss")
+          $("#player" + (game.turn+1) + "FullHouse").append(0);
+          game.switchTurn();
+          displayDice();
+    }
+      if (fullHouseprompt.toLowerCase() === "no") {
+          alert ("than pick another category")
+        }
+    });
   });
 
 });
