@@ -113,9 +113,16 @@ display: none;
   text-decoration: underline;
 }
 
+#youGotYahtzee {
+  display: none;
+  color: darkred;
+
+}
+
 #victoryMessage {
   display: none;
   font-size: 3em;
+  color: #cc0000;
   z-index: +2;
 }
 #victoryWhaleImg {
@@ -126,6 +133,9 @@ display: none;
   z-index: +1;
 }
 
+#resetBtn {
+  display: none;
+}
 
 #die1, #die2, #die3, #die4, #die5 {
   cursor: pointer;

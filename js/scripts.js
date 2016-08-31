@@ -110,7 +110,10 @@ Game.prototype.findWinner = function() {
   $("#victoryWhaleImg").show();
   $("#victoryMessage").show();
   $("#gameWinner").text(this.winner);
+  $("#resetBtn").show();
 }
+
+
 
 
 $(document).ready(function() {
@@ -118,7 +121,10 @@ $(document).ready(function() {
   for (var i = 0; i < 2; i++) {
       game.createPlayers();
     }
-
+    // var highlightCurrentPlayer = function(game) {
+    //   game.players[this.turn].css("color", "red");
+    //
+    // }
   setTimeout(function(){$('h1').show();
     $('h1').addClass('animated pulse');}, 850);
   var displayDice = function() {
@@ -137,6 +143,7 @@ $(document).ready(function() {
     setTimeout(function(){$("#gameDisplay").fadeIn();}, 450);
     game.players[0].playerName = $("#player1Name").val();
     game.players[1].playerName = $("#player2Name").val();
+
     $("#player1Display").text(game.players[0].playerName);
     $("#player2Display").text(game.players[1].playerName);
 
@@ -250,9 +257,5 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
-    if (game.winner === game.players[0]) {
-      alert(this.players[0].playerName + " wins!")
-    } else if (game.winner === game.players[0]) {
-      alert(this.players[1].playerName + " wins!")
-    }
+
 });

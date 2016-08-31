@@ -42,12 +42,10 @@
     </div>
 
     <div class="jumbotron">
-      <h1>Whale Yahtzee!</h1>
-
-
+      <h1 id="jumboTitle">Whale Yahtzee!</h1>
     </div>
     <div class="row">
-    <img class="animated fadeInLeftBig jello" id="dolphinPic" src="img/dolphinRight.png" alt="dolphin"><img class="animated fadeInRightBig jello" id="dolphinPic" src="img/dolphinLeft.png" alt="dolphin">
+    <img class="animated fadeInLeftBig jello" id="dolphinPic1" src="img/dolphinRight.png" alt="dolphin"><img class="animated fadeInRightBig jello" id="dolphinPic2" src="img/dolphinLeft.png" alt="dolphin">
   </div>
     <div id="playerNameInput" class="container img-rounded">
       <form>
@@ -119,6 +117,7 @@
         </h3>
 
         <h4><em>Instructions: Select the die/dice you wish to reroll.  The selected dice will be highlighted until they are rerolled.</em></h4>
+
       </div>
       <br>
       <button type="button" name="roll" class="btn-lg btn-success" id="rollButton">Roll them dice!</button><br>
@@ -128,6 +127,7 @@
       <button class="btn-lg btn-primary" id="4sButton">Use as Fours</button><br>
       <button class="btn-lg btn-primary" id="5sButton">Use as Fives</button><br>
       <button class="btn-lg btn-primary" id="6sButton">Use as Sixes</button><br>
+      <button id="resetBtn" type="reset" class="btn btn-danger" onClick="window.location.reload()">New Game</button>
     </div>
   </body>
 </html>
