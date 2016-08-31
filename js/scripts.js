@@ -24,6 +24,16 @@ Game.prototype.switchTurn = function() {
   this.players[this.turn].diceValues = [0,0,0,0,0]
 };
 
+Game.prototype.topTotals= function () {
+  var tempTotal = 0;
+  for (var i = 0; i < 6; i++) {
+    if (this.players[this.turn].scores[i][1] === true) {
+      tempTotal += this.players[this.turn].scores[i][0];
+      this.players[this.turn].topTotal = tempTotal;
+    }
+  };
+};
+
 function Player(playerName, round, diceValues, diceIndex, countNumber, countMultiple, aces, twos, threes, fours, fives, sixes, score) {
   this.playerName = playerName;
   this.round = 0;
@@ -31,7 +41,7 @@ function Player(playerName, round, diceValues, diceIndex, countNumber, countMult
   this.diceIndex = [0,1,2,3,4];
   this.countNumber = 0;
   this.countMultiple = 0;
-  this.scores = [[this.aces, false], [this.twos, false], [this.threes, false], [this.fours, false], [this.fives, false], [this.sixes, false]];
+  this.scores = [[0, false], [0, false], [0, false], [0, false], [0, false], [0, false]];
   this.topTotal = 0;
 };
 
@@ -55,18 +65,6 @@ Player.prototype.turnScore = function() {
   this.countNumber = 0;
 }
 
-Game.prototype.topTotals= function () {
-  debugger;
-  for (var i = 0; i < 6; i++) {
-    if (this.players[this.turn].scores[i][1] === true) {
-      this.players[this.turn].topTotal += this.players[this.turn].scores[i][0];
-      console.log(this.players[this.turn].scores[i][0]);
-      console.log(this.players[this.turn].aces);
-    }
-  };
-  return this.players[this.turn].topTotal;
-};
-
 // UI logic
 Game.prototype.hideButtons = function() {
   $("#1sButton").show();
@@ -88,7 +86,6 @@ $(document).ready(function() {
   for (var i = 0; i < 2; i++) {
       game.createPlayers();
     }
-
   setTimeout(function(){$('h1').show();
     $('h1').addClass('animated bounceIn');}, 600);
   var displayDice = function() {
@@ -98,9 +95,7 @@ $(document).ready(function() {
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
     $("#rollButton").show();
-
   }
-
 
   $("form").submit(function(event) {
     event.preventDefault();
@@ -120,8 +115,6 @@ $(document).ready(function() {
     $("#die3").text(game.players[game.turn].diceValues[2]);
     $("#die4").text(game.players[game.turn].diceValues[3]);
     $("#die5").text(game.players[game.turn].diceValues[4]);
-
-
     displayDice();
     game.players[game.turn].diceIndex = [];
     $("#die1").css("background-color", "inherit");
@@ -131,7 +124,6 @@ $(document).ready(function() {
     $("#die5").css("background-color", "inherit");
     if (game.players[game.turn].round >= 3) {
       $("#rollButton").hide();
-
     }
   });
 
@@ -159,10 +151,9 @@ $(document).ready(function() {
   $("#1sButton").click(function(){
     game.players[game.turn].countNumber = 1;
     game.players[game.turn].findValues();
-    game.players[game.turn].aces = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Aces").append(game.players[game.turn].aces);
+    game.players[game.turn].scores[0][0] = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Aces").append(game.players[game.turn].scores[0][0]);
     game.players[game.turn].scores[0][1] =  true;
-
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
@@ -171,45 +162,55 @@ $(document).ready(function() {
   $("#2sButton").click(function(){
     game.players[game.turn].countNumber = 2;
     game.players[game.turn].findValues();
-    game.players[game.turn].twos = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Twos").append(game.players[game.turn].twos);
+    game.players[game.turn].scores[1][0] = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Twos").append(game.players[game.turn].scores[1][0]);
     game.players[game.turn].scores[1][1] =  true;
+    game.topTotals();
+    $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
     displayDice();
   });
   $("#3sButton").click(function(){
     game.players[game.turn].countNumber = 3;
     game.players[game.turn].findValues();
-    game.players[game.turn].threes = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Threes").append(game.players[game.turn].threes);
+    game.players[game.turn].scores[2][0] = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Threes").append(game.players[game.turn].scores[2][0]);
     game.players[game.turn].scores[2][1] =  true;
+    game.topTotals();
+    $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
     displayDice();
   });
   $("#4sButton").click(function(){
     game.players[game.turn].countNumber = 4;
     game.players[game.turn].findValues();
-    game.players[game.turn].fours = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Fours").append(game.players[game.turn].fours);
+    game.players[game.turn].scores[3][0] = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Fours").append(game.players[game.turn].scores[3][0]);
     game.players[game.turn].scores[3][1] =  true;
+    game.topTotals();
+    $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
     displayDice();
   });
   $("#5sButton").click(function(){
     game.players[game.turn].countNumber = 5;
     game.players[game.turn].findValues();
-    game.players[game.turn].fives = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Fives").append(game.players[game.turn].fives);
+    game.players[game.turn].scores[4][0] = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Fives").append(game.players[game.turn].scores[4][0]);
     game.players[game.turn].scores[4][1] =  true;
+    game.topTotals();
+    $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
     displayDice();
   });
   $("#6sButton").click(function(){
     game.players[game.turn].countNumber = 6;
     game.players[game.turn].findValues();
-    game.players[game.turn].sixes = game.players[game.turn].turnScore()
-    $("#player" + (game.turn+1) + "Sixes").append(game.players[game.turn].sixes);
+    game.players[game.turn].scores[5][0] = game.players[game.turn].turnScore()
+    $("#player" + (game.turn+1) + "Sixes").append(game.players[game.turn].scores[5][0]);
     game.players[game.turn].scores[5][1] =  true;
+    game.topTotals();
+    $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
     game.switchTurn();
     displayDice();
   });
