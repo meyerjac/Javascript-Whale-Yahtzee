@@ -27,24 +27,24 @@ Game.prototype.switchTurn = function() {
 
 Game.prototype.topTotals= function () {
   var tempTotal = 0;
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 9; i++) {
     if (this.players[this.turn].scores[i][1] === true) {
       tempTotal += this.players[this.turn].scores[i][0];
       this.players[this.turn].topTotal = tempTotal;
     }
-  };
-};
+  }
+}
 
 Game.prototype.gameOver = function() {
   var scoreCounter = 0;
   for (var j = 0; j < 2; j++) {
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 9; i++) {
       if (this.players[j].scores[i][1] === true) {
         scoreCounter++;
       }
     }
   }
-  if (scoreCounter === 12) {
+  if (scoreCounter === 18) {
     this.findWinner();
   }
 }
@@ -56,16 +56,16 @@ function Player(playerName, round, diceValues, diceIndex, countNumber, countMult
   this.diceIndex = [0,1,2,3,4];
   this.countNumber = 0;
   this.countMultiple = 0;
-  this.scores = [[0, false], [0, false], [0, false], [0, false], [0, false], [0, false]];
+  this.scores = [[0, false], [0, false], [0, false], [0, false], [0, false], [0, false], [0, false], [0, false], [0, false]];
   this.topTotal = 0;
-};
+}
 
 Player.prototype.roll = function() {
   for (var i = 0; i < this.diceIndex.length; i++) {
     this.diceValues[this.diceIndex[i]] = Math.floor((Math.random() * 6) + 1);
-  };
+  }
   this.round++;
-};
+}
 
 
 Player.prototype.findValues = function() {
@@ -73,40 +73,40 @@ Player.prototype.findValues = function() {
     if (this.diceValues[i] === this.countNumber) {
       this.countMultiple++;
     }
-  };
-};
+  }
+}
 
 Player.prototype.largeStraight = function() {
   this.diceValues.sort();
   this.diceValues.toString();
-  console.log(this.diceValues.toString());
+  console.log(this.diceValues);
   var largeStraightArr1 = [1, 2, 3, 4, 5];
   var largeStraightArr2 = [2, 3, 4, 5, 6];
-if (this.diceValues.toString() === largeStraightArr1.toString()) {
-  return true
-}  if (this.diceValues.toString() === largeStraightArr2.toString()) {
-  return true
-} else {return (false)
-}
+  if (this.diceValues.toString() === largeStraightArr1.toString()) {
+    return true;
+    } else if (this.diceValues.toString() === largeStraightArr2.toString()) {
+      return true;
+    } else {
+      return false;
+  }
 }
 
 Player.prototype.yahtzee = function() {
-  if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4]) && (this.diceValues[1]=== this.diceValues[4])) {
-    return true
-  } else  {
-    return false
+  if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4]) && (this.diceValues[1] === this.diceValues[4])) {
+    return true;
+  } else {
+    return false;
   }
 }
 
 Player.prototype.fullHouse = function() {
-
   this.diceValues.sort();
   if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4])) {
-    return true
+    return true;
   } if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[1] === this.diceValues[2]) && (this.diceValues[3] === this.diceValues[4])) {
-    return true
-  } else {
-    return false
+    return true;
+    } else {
+      return false;
   }
 }
 
@@ -124,19 +124,22 @@ Game.prototype.hideButtons = function() {
   $("#5sButton").show();
   $("#6sButton").show();
   $("#largeStraightButton").show();
+  $("#fullHouseButton").show();
+  $("#yahtzeeButton").show();
 
   for (var i = 0; i < 6; i++) {
     if (this.players[this.turn].scores[i][1] === true) {
         $("#" + (i+1) + "sButton").hide();
     }
   }
-}
-
-Game.prototype.yahtzee =  function() {
-  if (this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[1] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[2] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[3] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[4]) {
-    this.players[this.turn].topTotal+= 50;
-    alert("YAHTZEE!");
-    this.switchTurn();
+  if (this.players[this.turn].scores[6][1] === true) {
+    $("#largeStraightButton").hide();
+  }
+  if (this.players[this.turn].scores[7][1] === true) {
+    $("#fullHouseButton").hide();
+  }
+  if (this.players[this.turn].scores[8][1] === true) {
+    $("#yahtzeeButton").hide();
   }
 }
 
@@ -200,7 +203,6 @@ $(document).ready(function() {
     if (game.players[game.turn].round >= 3) {
       $("#rollButton").hide();
     }
-    game.yahtzee();
   });
 
 // Begin dice click functionality;
@@ -279,6 +281,7 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+
   $("#2sButton").click(function(){
     game.players[game.turn].countNumber = 2;
     game.players[game.turn].findValues();
@@ -291,6 +294,7 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+
   $("#3sButton").click(function(){
     game.players[game.turn].countNumber = 3;
     game.players[game.turn].findValues();
@@ -303,6 +307,7 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+
   $("#4sButton").click(function(){
     game.players[game.turn].countNumber = 4;
     game.players[game.turn].findValues();
@@ -315,6 +320,7 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+
   $("#5sButton").click(function(){
     game.players[game.turn].countNumber = 5;
     game.players[game.turn].findValues();
@@ -327,6 +333,7 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+
   $("#6sButton").click(function(){
     game.players[game.turn].countNumber = 6;
     game.players[game.turn].findValues();
@@ -341,58 +348,82 @@ $(document).ready(function() {
   });
 
   $("#largeStraightButton").click(function(){
-    game.players[game.turn].largeStraight();
+    // game.players[game.turn].largeStraight();
       if (game.players[game.turn].largeStraight() === true) {
-        $("#player" + (game.turn+1) + "LargeStraight").append(40);
+        game.players[game.turn].scores[6][0] = 40;
+        game.topTotals();
+        $("#player" + (game.turn+1) + "LargeStraight").append(game.players[game.turn].scores[6][0]);
+        game.players[game.turn].scores[6][1] =  true;
         game.switchTurn();
         displayDice();
-    } if (game.players[game.turn].largeStraight() === false) {
+      } else {
         var largeStraightPrompt = prompt("you do not have a large straight, do you wish to continue and take a zero for this turn? (yes/no)")
         if (largeStraightPrompt.toLowerCase() === "yes") {
             alert("okay you fool")
-            $("#player" + (game.turn+1) + "LargeStraight").append(0);
+            game.players[game.turn].scores[6][0] = 0;
+            game.topTotals();
+            $("#player" + (game.turn+1) + "LargeStraight").append(game.players[game.turn].scores[6][0]);
+            game.players[game.turn].scores[6][1] =  true;
+            game.gameOver();
             game.switchTurn();
             displayDice();
-      }
+          }
         if (largeStraightPrompt.toLowerCase() === "no") {
             alert ("good choice, select another category")
-      }
-    }
-  });
-  $("#yahtzeeButton").click(function(){
-    if (game.players[game.turn].yahtzee() === true) {
-      $("#player" + (game.turn+1) + "Yahtzee").append(50);
-      game.switchTurn();
-      displayDice();
-  } if (game.players[game.turn].yahtzee() === false) {
-      var yahtzeePrompt = prompt("you do not have a Yahtzee, an average player has about a 1:1200 chance of a yathzee on any given roll...you are no differnet. do you wish to take a zero for your yahtzee turn? (yes/no)")
-      if (yahtzeePrompt.toLowerCase() === "yes") {
-          alert("okay you fool")
-          $("#player" + (game.turn+1) + "Yahtzee").append(0);
-          game.switchTurn();
-          displayDice();
-      } else {
-          alert ("oooo, being risky eh?")
-      }
+          }
     }
   });
 
   $("#fullHouseButton").click(function(){
     if (game.players[game.turn].fullHouse() === true) {
-      $("#player" + (game.turn+1) + "FullHouse").append(25);
+      game.players[game.turn].scores[7][0] = 25;
+      game.topTotals();
+      $("#player" + (game.turn+1) + "FullHouse").append(game.players[game.turn].scores[7][0]);
+      game.players[game.turn].scores[7][1] =  true;
+      game.gameOver();
       game.switchTurn();
       displayDice();
   } if (game.players[game.turn].fullHouse() === false) {
       var fullHousePrompt = prompt("you do not have a FullHouse, have you ever played Yathzee? C'mon now. do you want to take a 0 on fullHouse? (yes/no)")
       if (fullHousePrompt.toLowerCase() === "yes") {
-          alert("okay, your loss")
-          $("#player" + (game.turn+1) + "FullHouse").append(0);
+          alert("okay, your loss");
+          game.players[game.turn].scores[7][0] = 0;
+          game.topTotals();
+          $("#player" + (game.turn+1) + "FullHouse").append(game.players[game.turn].scores[7][0]);
+          game.players[game.turn].scores[7][1] =  true;
+          game.gameOver();
           game.switchTurn();
           displayDice();
     } else {
           alert ("then pick another category")
         }
     };
+  });
+
+  $("#yahtzeeButton").click(function(){
+    if (game.players[game.turn].yahtzee() === true) {
+      game.players[game.turn].scores[8][0] = 50;
+      game.topTotals();
+      $("#player" + (game.turn+1) + "Yahtzee").append(50);
+      game.players[game.turn].scores[8][1] =  true;
+      game.gameOver();
+      game.switchTurn();
+      displayDice();
+  } if (game.players[game.turn].yahtzee() === false) {
+      var yahtzeePrompt = prompt("you do not have a Yahtzee, an average player has about a 1:1200 chance of a yathzee on any given roll...you are no differnet. do you wish to take a zero for your yahtzee turn? (yes/no)")
+      if (yahtzeePrompt.toLowerCase() === "yes") {
+          alert("okay you fool")
+          game.players[game.turn].scores[8][0] = 0;
+          game.topTotals();
+          $("#player" + (game.turn+1) + "Yahtzee").append(game.players[game.turn].scores[8][0]);
+          game.players[game.turn].scores[8][1] =  true;
+          game.gameOver();
+          game.switchTurn();
+          displayDice();
+      } else {
+          alert ("oooo, being risky eh?")
+      }
+    }
   });
 
 });
