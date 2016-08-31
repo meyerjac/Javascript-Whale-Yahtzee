@@ -1,8 +1,9 @@
 // Business Logic
-function Game(numberOfPlayers, players, turn) {
+function Game(numberOfPlayers, players, turn, winner) {
   this.numberOfPlayers = 0;
   this.players = [];
   this.turn = 0;
+  this.winner = "";
 };
 
 Game.prototype.createPlayers = function(){
@@ -34,7 +35,34 @@ Game.prototype.topTotals= function () {
   };
 };
 
-function Player(playerName, round, diceValues, diceIndex, countNumber, countMultiple, aces, twos, threes, fours, fives, sixes, score) {
+Game.prototype.gameOver = function() {
+  var scoreCounter = 0;
+  for (var j = 0; j < 2; j++) {
+    for (var i = 0; i < 6; i++) {
+      if (this.players[j].scores[i][1] === true) {
+        scoreCounter++;
+      }
+    }
+  }
+  if (scoreCounter === 12) {
+    this.findWinner();
+  } else {
+    console.log(scoreCounter);
+  }
+}
+
+Game.prototype.findWinner = function() {
+  if (this.players[0].topTotal > this.players[1].topTotal) {
+    this.winner = this.players[0].playerName;
+  } else if (this.players[0].topTotal === this.players[1].topTotal) {
+    this.winner = "Tie game!"
+  } else {
+    this.winner = this.players[1].playerName;
+  }
+  console.log(this.winner);
+}
+
+function Player(playerName, round, diceValues, diceIndex, countNumber, countMultiple, score) {
   this.playerName = playerName;
   this.round = 0;
   this.diceValues = [];
@@ -74,9 +102,9 @@ Game.prototype.hideButtons = function() {
   $("#5sButton").show();
   $("#6sButton").show();
 
-for (var i = 0; i < 6; i++) {
-  if (this.players[this.turn].scores[i][1] === true) {
-      $("#" + (i+1) + "sButton").hide();
+  for (var i = 0; i < 6; i++) {
+    if (this.players[this.turn].scores[i][1] === true) {
+        $("#" + (i+1) + "sButton").hide();
     }
   }
 }
@@ -101,20 +129,15 @@ $(document).ready(function() {
     event.preventDefault();
     $("#playerNameInput").fadeOut();
     setTimeout(function(){$("#scoreCards").fadeIn();}, 450);
-    var player1Input = $("#player1Name").val();
-    var player2Input = $("#player2Name").val();
-    $("#player1Display").text(player1Input);
-    $("#player2Display").text(player2Input);
+    game.players[0].playerName = $("#player1Name").val();
+    game.players[1].playerName = $("#player2Name").val();
+    $("#player1Display").text(game.players[0].playerName);
+    $("#player2Display").text(game.players[1].playerName);
   });
 
   $("#rollButton").click(function(){
     $(".dice-boxes").show();
     game.players[game.turn].roll();
-    $("#die1").text(game.players[game.turn].diceValues[0]);
-    $("#die2").text(game.players[game.turn].diceValues[1]);
-    $("#die3").text(game.players[game.turn].diceValues[2]);
-    $("#die4").text(game.players[game.turn].diceValues[3]);
-    $("#die5").text(game.players[game.turn].diceValues[4]);
     displayDice();
     game.players[game.turn].diceIndex = [];
     $("#die1").css("background-color", "inherit");
@@ -156,6 +179,7 @@ $(document).ready(function() {
     game.players[game.turn].scores[0][1] =  true;
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
+    game.gameOver();
     game.switchTurn();
     displayDice();
   });
@@ -167,6 +191,7 @@ $(document).ready(function() {
     game.players[game.turn].scores[1][1] =  true;
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
+    game.gameOver();
     game.switchTurn();
     displayDice();
   });
@@ -178,6 +203,7 @@ $(document).ready(function() {
     game.players[game.turn].scores[2][1] =  true;
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
+    game.gameOver();
     game.switchTurn();
     displayDice();
   });
@@ -189,6 +215,7 @@ $(document).ready(function() {
     game.players[game.turn].scores[3][1] =  true;
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
+    game.gameOver();
     game.switchTurn();
     displayDice();
   });
@@ -200,6 +227,7 @@ $(document).ready(function() {
     game.players[game.turn].scores[4][1] =  true;
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
+    game.gameOver();
     game.switchTurn();
     displayDice();
   });
@@ -211,6 +239,7 @@ $(document).ready(function() {
     game.players[game.turn].scores[5][1] =  true;
     game.topTotals();
     $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
+    game.gameOver();
     game.switchTurn();
     displayDice();
   });
