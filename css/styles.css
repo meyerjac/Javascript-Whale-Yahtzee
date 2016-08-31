@@ -5,8 +5,6 @@ body {
   background-attachment: fixed;
   /*background-position: center;*/
   align-items: center;
-
-
 }
 
 h1 {
@@ -83,7 +81,7 @@ display: none;
   background-color: #d7faeb;
 }
 
-#scoreCards {
+#gameDisplay {
   display: none;
 }
 
@@ -111,8 +109,10 @@ display: none;
   padding: 20px;
   display: inline-block;
   margin-left: 50px;
+}
 
-
+.selected {
+  background-color: lightblue;
 }
 
 #die1:active, #die2:active, #die3:active, #die4:active, #die5:active  {
