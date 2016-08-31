@@ -90,7 +90,7 @@ $(document).ready(function() {
     }
 
   setTimeout(function(){$('h1').show();
-    $('h1').addClass('animated bounceIn');}, 600);
+    $('h1').addClass('animated pulse');}, 850);
   var displayDice = function() {
     $("#die1").text(game.players[game.turn].diceValues[0]);
     $("#die2").text(game.players[game.turn].diceValues[1]);
@@ -105,7 +105,7 @@ $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
     $("#playerNameInput").fadeOut();
-    setTimeout(function(){$("#scoreCards").fadeIn();}, 450);
+    setTimeout(function(){$("#gameDisplay").fadeIn();}, 450);
     var player1Input = $("#player1Name").val();
     var player2Input = $("#player2Name").val();
     $("#player1Display").text(player1Input);

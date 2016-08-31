@@ -6,13 +6,10 @@ body {
   background-size: cover;
   background-position: center;
   align-items: center;
-
-
 }
 
-h1 {
-  display: none;
-}
+
+
 h3 {
   font-size: 75px;
 }
@@ -88,8 +85,14 @@ display: none;
   background-color: #d7faeb;
 }
 
-#scoreCards {
+.scoreCards {
+  z-index: -1;
+
+}
+
+#gameDisplay {
   display: none;
+  position: relative;
 }
 
 #navBarList {
@@ -109,6 +112,20 @@ display: none;
   color: black ;
   text-decoration: underline;
 }
+
+#victoryMessage {
+  display: none;
+  font-size: 3em;
+  z-index: +2;
+}
+#victoryWhaleImg {
+  display: none;
+  position: relative;
+  height: 800px;
+  width: auto;
+  z-index: +1;
+}
+
 
 #die1, #die2, #die3, #die4, #die5 {
   cursor: pointer;

@@ -70,8 +70,8 @@
         <button id="playerNameSubmit" type="submit" class="btn btn-primary">LET'S PLAY YAHTZEE ! </button>
      </form>
     </div>
-    <div id="scoreCards" class="container img-rounded">
-      <div class="row">
+    <div id="gameDisplay" class="container img-rounded">
+      <div class="row scoreCards">
         <div class="col-md-5 col-md-offset-1 player1ScoreCard">
         <div class="highlightedplayer1">
           <h2><span id="player1Display"></span></h2></div>
@@ -98,12 +98,14 @@
             <p>Fours: <span id="player2Fours"></span></p>
             <p>Fives: <span id="player2Fives"></span></p>
             <p>Sixes: <span id="player2Sixes"></span></p>
-            <p><strong>Total:<span class="topTotal2"></span></strong></p>
+            <p><strong>Total: <span class="topTotal2"></span></strong></p>
             <p>
                 If total is 63 or More, get a <strong>Bonus</strong> of 35 points!
             </p>
+          </div>
+        <img id="victoryWhaleImg" class="animated rotateInDownLeft"src="img/whaleCrop.png" alt="Victory Whale!">
+        <h2 id="victoryMessage">VICTORY TO <span id="gameWinner"></span>!</h2>
 
-        </div>
       </div>
       <hr>
       <div class="row dice-boxes">
