@@ -109,7 +109,6 @@ Game.prototype.hideButtons = function() {
 }
 
 Game.prototype.yahtzee =  function() {
-  debugger;
   if (this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[1] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[2] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[3] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[4]) {
     this.players[this.turn].topTotal+= 50;
     alert("YAHTZEE!");
@@ -144,7 +143,6 @@ $(document).ready(function() {
   });
 
   $("#rollButton").click(function(){
-    console.log(game.players[game.turn].diceIndex);
     $(".dice-boxes").show();
     game.players[game.turn].roll();
     displayDice();
