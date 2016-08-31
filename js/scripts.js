@@ -35,8 +35,6 @@ Game.prototype.topTotals= function () {
   };
 };
 
-
-
 Game.prototype.gameOver = function() {
   var scoreCounter = 0;
   for (var j = 0; j < 2; j++) {
@@ -48,16 +46,6 @@ Game.prototype.gameOver = function() {
   }
   if (scoreCounter === 12) {
     this.findWinner();
-  }
-}
-
-Game.prototype.findWinner = function() {
-  if (this.players[0].topTotal > this.players[1].topTotal) {
-    this.winner = this.players[0].playerName;
-  } else if (this.players[0].topTotal === this.players[1].topTotal) {
-    this.winner = "Tie game!"
-  } else {
-    this.winner = this.players[1].playerName;
   }
 }
 
@@ -116,13 +104,28 @@ Game.prototype.yahtzee =  function() {
   }
 }
 
+Game.prototype.findWinner = function() {
+  if (this.players[0].topTotal > this.players[1].topTotal) {
+    this.winner = this.players[0].playerName;
+  } else if (this.players[0].topTotal === this.players[1].topTotal) {
+    this.winner = "Tie game!"
+  } else {
+    this.winner = this.players[1].playerName;
+  }
+  $("#victoryWhaleImg").show();
+  $("#victoryMessage").show();
+  $("#gameWinner").text(this.winner);
+}
+
 $(document).ready(function() {
   var game = new Game();
   for (var i = 0; i < 2; i++) {
       game.createPlayers();
     }
+
   setTimeout(function(){$('h1').show();
-    $('h1').addClass('animated bounceIn');}, 600);
+    $('h1').addClass('animated pulse');}, 850);
+
   var displayDice = function() {
     $("#die1").text(game.players[game.turn].diceValues[0]);
     $("#die2").text(game.players[game.turn].diceValues[1]);
@@ -191,6 +194,7 @@ $(document).ready(function() {
       game.players[game.turn].diceIndex.push(1);
     }
   });
+
   $("#die3").click(function(){
     $("#die3").toggleClass("selected");
     threeClick++;
@@ -201,6 +205,7 @@ $(document).ready(function() {
       game.players[game.turn].diceIndex.push(2);
     }
   });
+
   $("#die4").click(function(){
     $("#die4").toggleClass("selected");
     fourClick++;
@@ -211,6 +216,7 @@ $(document).ready(function() {
       game.players[game.turn].diceIndex.push(3);
     }
   });
+
   $("#die5").click(function(){
     $("#die5").toggleClass("selected");
     fiveClick++;
@@ -221,7 +227,8 @@ $(document).ready(function() {
       game.players[game.turn].diceIndex.push(4);
     }
   });
-
+  
+//Begin scorecard selectors
   $("#1sButton").click(function(){
     game.players[game.turn].countNumber = 1;
     game.players[game.turn].findValues();
