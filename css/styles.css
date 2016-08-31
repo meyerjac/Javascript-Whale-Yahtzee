@@ -121,7 +121,7 @@ display: none;
 #victoryWhaleImg {
   display: none;
   position: relative;
-  height: 800px;
+  height: 400px;
   width: auto;
   z-index: +1;
 }

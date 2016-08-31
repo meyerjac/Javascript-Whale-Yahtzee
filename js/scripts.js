@@ -51,16 +51,6 @@ Game.prototype.gameOver = function() {
   }
 }
 
-Game.prototype.findWinner = function() {
-  if (this.players[0].topTotal > this.players[1].topTotal) {
-    this.winner = this.players[0].playerName;
-  } else if (this.players[0].topTotal === this.players[1].topTotal) {
-    this.winner = "Tie game!"
-  } else {
-    this.winner = this.players[1].playerName;
-  }
-  console.log(this.winner);
-}
 
 function Player(playerName, round, diceValues, diceIndex, countNumber, countMultiple, score) {
   this.playerName = playerName;
@@ -109,11 +99,26 @@ Game.prototype.hideButtons = function() {
   }
 }
 
+Game.prototype.findWinner = function() {
+  if (this.players[0].topTotal > this.players[1].topTotal) {
+    this.winner = this.players[0].playerName;
+  } else if (this.players[0].topTotal === this.players[1].topTotal) {
+    this.winner = "Tie game!"
+  } else {
+    this.winner = this.players[1].playerName;
+  }
+  $("#victoryWhaleImg").show();
+  $("#victoryMessage").show();
+  $("#gameWinner").text(this.winner);
+}
+
+
 $(document).ready(function() {
   var game = new Game();
   for (var i = 0; i < 2; i++) {
       game.createPlayers();
     }
+
   setTimeout(function(){$('h1').show();
     $('h1').addClass('animated pulse');}, 850);
   var displayDice = function() {
@@ -129,7 +134,7 @@ $(document).ready(function() {
     event.preventDefault();
     $("#playerNameInput").fadeOut();
 
-    setTimeout(function(){$("#scoreCards").fadeIn();}, 450);
+    setTimeout(function(){$("#gameDisplay").fadeIn();}, 450);
     game.players[0].playerName = $("#player1Name").val();
     game.players[1].playerName = $("#player2Name").val();
     $("#player1Display").text(game.players[0].playerName);
@@ -245,4 +250,9 @@ $(document).ready(function() {
     game.switchTurn();
     displayDice();
   });
+    if (game.winner === game.players[0]) {
+      alert(this.players[0].playerName + " wins!")
+    } else if (game.winner === game.players[0]) {
+      alert(this.players[1].playerName + " wins!")
+    }
 });
