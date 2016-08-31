@@ -113,18 +113,12 @@ Game.prototype.findWinner = function() {
   $("#resetBtn").show();
 }
 
-
-
-
 $(document).ready(function() {
   var game = new Game();
   for (var i = 0; i < 2; i++) {
       game.createPlayers();
     }
-    // var highlightCurrentPlayer = function(game) {
-    //   game.players[this.turn].css("color", "red");
-    //
-    // }
+
   setTimeout(function(){$('h1').show();
     $('h1').addClass('animated pulse');}, 850);
   var displayDice = function() {
