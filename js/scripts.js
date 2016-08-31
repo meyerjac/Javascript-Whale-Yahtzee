@@ -46,11 +46,8 @@ Game.prototype.gameOver = function() {
   }
   if (scoreCounter === 12) {
     this.findWinner();
-  } else {
-    console.log(scoreCounter);
   }
 }
-
 
 function Player(playerName, round, diceValues, diceIndex, countNumber, countMultiple, score) {
   this.playerName = playerName;
@@ -99,6 +96,14 @@ Game.prototype.hideButtons = function() {
   }
 }
 
+Game.prototype.yahtzee =  function() {
+  if (this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[1] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[2] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[3] && this.players[this.turn].diceValues[0] === this.players[this.turn].diceValues[4]) {
+    this.players[this.turn].topTotal+= 50;
+    alert("YAHTZEE!");
+    this.switchTurn();
+  }
+}
+
 Game.prototype.findWinner = function() {
   if (this.players[0].topTotal > this.players[1].topTotal) {
     this.winner = this.players[0].playerName;
@@ -121,6 +126,7 @@ $(document).ready(function() {
 
   setTimeout(function(){$('h1').show();
     $('h1').addClass('animated pulse');}, 850);
+
   var displayDice = function() {
     $("#die1").text(game.players[game.turn].diceValues[0]);
     $("#die2").text(game.players[game.turn].diceValues[1]);
@@ -133,14 +139,12 @@ $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
     $("#playerNameInput").fadeOut();
-
     setTimeout(function(){$("#gameDisplay").fadeIn();}, 450);
     game.players[0].playerName = $("#player1Name").val();
     game.players[1].playerName = $("#player2Name").val();
 
     $("#player1Display").text(game.players[0].playerName);
     $("#player2Display").text(game.players[1].playerName);
-
   });
 
   $("#rollButton").click(function(){
@@ -148,37 +152,85 @@ $(document).ready(function() {
     game.players[game.turn].roll();
     displayDice();
     game.players[game.turn].diceIndex = [];
-    $("#die1").css("background-color", "inherit");
-    $("#die2").css("background-color", "inherit");
-    $("#die3").css("background-color", "inherit");
-    $("#die4").css("background-color", "inherit");
-    $("#die5").css("background-color", "inherit");
+    oneClick = 0;
+    twoClick = 0;
+    threeClick = 0;
+    fourClick = 0;
+    fiveClick = 0;
+    sixClick = 0;
+    for (var i = 1; i < 6; i++) {
+      $("#die" + i).removeClass("selected");
+    }
     if (game.players[game.turn].round >= 3) {
       $("#rollButton").hide();
     }
+    game.yahtzee();
   });
+
+// Begin dice click functionality;
+  var oneClick = 0;
+  var twoClick = 0;
+  var threeClick = 0;
+  var fourClick = 0;
+  var fiveClick = 0;
+  var sixClick = 0;
 
   $("#die1").click(function(){
-    $("#die1").css("background-color", "lightblue");
-    game.players[game.turn].diceIndex.push(0);
-  });
-  $("#die2").click(function(){
-    $("#die2").css("background-color", "lightblue");
-    game.players[game.turn].diceIndex.push(1);
-  });
-  $("#die3").click(function(){
-    $("#die3").css("background-color", "lightblue");
-    game.players[game.turn].diceIndex.push(2);
-  });
-  $("#die4").click(function(){
-    $("#die4").css("background-color", "lightblue");
-    game.players[game.turn].diceIndex.push(3);
-  });
-  $("#die5").click(function(){
-    $("#die5").css("background-color", "lightblue");
-    game.players[game.turn].diceIndex.push(4);
+    $("#die1").toggleClass("selected");
+    oneClick++;
+    if ((oneClick % 2) === 0) {
+      var index = game.players[game.turn].diceIndex.indexOf(0);
+      game.players[game.turn].diceIndex.splice(index, 1);
+    } else {
+      game.players[game.turn].diceIndex.push(0);
+    }
   });
 
+  $("#die2").click(function(){
+    $("#die2").toggleClass("selected");
+    twoClick++;
+    if ((twoClick % 2) === 0) {
+      var index = game.players[game.turn].diceIndex.indexOf(1);
+      game.players[game.turn].diceIndex.splice(index, 1);
+    } else {
+      game.players[game.turn].diceIndex.push(1);
+    }
+  });
+
+  $("#die3").click(function(){
+    $("#die3").toggleClass("selected");
+    threeClick++;
+    if ((threeClick % 2) === 0) {
+      var index = game.players[game.turn].diceIndex.indexOf(2);
+      game.players[game.turn].diceIndex.splice(index, 1);
+    } else {
+      game.players[game.turn].diceIndex.push(2);
+    }
+  });
+
+  $("#die4").click(function(){
+    $("#die4").toggleClass("selected");
+    fourClick++;
+    if ((fourClick % 2) === 0) {
+      var index = game.players[game.turn].diceIndex.indexOf(3);
+      game.players[game.turn].diceIndex.splice(index, 1);
+    } else {
+      game.players[game.turn].diceIndex.push(3);
+    }
+  });
+
+  $("#die5").click(function(){
+    $("#die5").toggleClass("selected");
+    fiveClick++;
+    if ((fiveClick % 2) === 0) {
+      var index = game.players[game.turn].diceIndex.indexOf(4);
+      game.players[game.turn].diceIndex.splice(index, 1);
+    } else {
+      game.players[game.turn].diceIndex.push(4);
+    }
+  });
+
+//Begin scorecard selectors
   $("#1sButton").click(function(){
     game.players[game.turn].countNumber = 1;
     game.players[game.turn].findValues();

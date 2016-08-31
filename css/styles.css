@@ -8,8 +8,6 @@ body {
   align-items: center;
 }
 
-
-
 h3 {
   font-size: 75px;
 }
@@ -38,16 +36,13 @@ img {
   text-align: center;
 }
 
-
 .dice-boxes {
   border: black dashed 3px;
   font-size: 5em;
 }
 
-
 .btn-primary  {
   margin-top: 10px;
-
 }
 
 .col-md-6 {
@@ -87,7 +82,6 @@ display: none;
 
 .scoreCards {
   z-index: -1;
-
 }
 
 #gameDisplay {
@@ -133,6 +127,7 @@ display: none;
   z-index: +1;
 }
 
+
 #resetBtn {
   display: none;
 }
@@ -143,8 +138,10 @@ display: none;
   padding: 20px;
   display: inline-block;
   margin-left: 50px;
+}
 
-
+.selected {
+  background-color: lightblue;
 }
 
 #die1:active, #die2:active, #die3:active, #die4:active, #die5:active  {
