@@ -99,7 +99,7 @@ Player.prototype.yahtzee = function() {
 }
 
 Player.prototype.fullHouse = function() {
-  debugger;
+
   this.diceValues.sort();
   if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4])) {
     return true
@@ -368,11 +368,10 @@ $(document).ready(function() {
       var yahtzeePrompt = prompt("you do not have a Yahtzee, an average player has about a 1:1200 chance of a yathzee on any given roll...you are no differnet. do you wish to take a zero for your yahtzee turn? (yes/no)")
       if (yahtzeePrompt.toLowerCase() === "yes") {
           alert("okay you fool")
-          $("#player" + (game.turn+1) + "yahtzee").append(0);
+          $("#player" + (game.turn+1) + "Yahtzee").append(0);
           game.switchTurn();
           displayDice();
-      }
-      if (yahtzeePrompt.toLowerCase() === "no") {
+      } else {
           alert ("oooo, being risky eh?")
       }
     }
@@ -390,11 +389,10 @@ $(document).ready(function() {
           $("#player" + (game.turn+1) + "FullHouse").append(0);
           game.switchTurn();
           displayDice();
-    }
-      if (fullHouseprompt.toLowerCase() === "no") {
-          alert ("than pick another category")
+    } else {
+          alert ("then pick another category")
         }
-    });
+    };
   });
 
 });

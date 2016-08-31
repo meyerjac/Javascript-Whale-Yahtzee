@@ -54,16 +54,23 @@ img {
 display: none;
 }
 
+.scoreCards {
+  z-index: -1;
+  text-align: left;
+}
+
 .player1ScoreCard{
   border: black dashed 3px;
   font-size: 20px;
   color: #660000;
+
 }
 
 .player2ScoreCard{
   border: black dashed 3px;
   font-size: 20px;
   color: #660000;
+
 }
 
 .modal-header{
@@ -80,9 +87,15 @@ display: none;
   background-color: #d7faeb;
 }
 
-.scoreCards {
-  z-index: -1;
+
+
+/*.highlightedplayer1 {
+  float: left;
 }
+
+.highlightedplayer2 {
+  float: left;
+}*/
 
 #gameDisplay {
   display: none;
@@ -130,6 +143,7 @@ display: none;
 
 #resetBtn {
   display: none;
+  margin-top: 7px;
 }
 
 #die1, #die2, #die3, #die4, #die5 {
