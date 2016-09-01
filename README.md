@@ -1,20 +1,20 @@
-# _Whale Yatzhee_
+# _Whale Yahtzee_
 
-#### _An application to play Yatzhee, September 1 2016_
+#### _An application to play Yahtzee, September 1 2016_
 
 #### By _**Kevin Johnston, Brian Dutz, Jackson Meyer, & Andrew Merrell**_
 
 ## Description
 
-_This application will allow multiple users to play a simplified game of Yatzhee with a whale based twist! The application will allow users to enter basic identifying information and assign each player a scorecard.  Players alternate turns by rolling five randomly generated dice between 1-6 up to three times per turn.  The game will end once each player has taken six turns, and the player with the highest score will be the winner._
+_This application will allow multiple users to play a simplified game of Yahtzee with a whale based twist! The application will allow users to enter basic identifying information and assign each player a scorecard.  Players alternate turns by rolling five randomly generated dice between 1-6 up to three times per turn.  The game will end once each player has taken six turns, and the player with the highest score will be the winner._
 
 ## Setup/Installation Requirements
 
 1. Clone this repository at:
-  * https://github.com/kjohnston1149/yatzhee
+  * https://github.com/kjohnston1149/yahtzee
 2. Move into the project folder
 3. Open index.html in the browser of your choice (we suggest Chrome)
-4. To view on web browser, open GitHub pages webpage of this application: https://kjohnston1149.github.io/yatzhee/
+4. To view on web browser, open GitHub pages webpage of this application: https://kjohnston1149.github.io/yahtzee/
 
 ## Specifications
 
@@ -46,8 +46,6 @@ _There are no known bugs at this time._
 
 _For help, contact:_
 * [kjohnston1149@gmail.com](mailto:kjohnston1149@gmail.com)
-* email 2
-* email 3
 
 ## Technologies Used
 
