@@ -34,10 +34,12 @@ img {
   background-color: rgba(245, 245, 245, 0.6);
   padding: 15px;
   text-align: center;
+  border-radius: 39px 39px 39px 39px;
 }
 
 .dice-boxes {
-  border: black dashed 3px;
+  border-top: black dashed 3px;
+  border-bottom: black dashed 3px;
   font-size: 5em;
 }
 

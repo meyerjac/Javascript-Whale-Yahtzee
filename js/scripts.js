@@ -79,7 +79,6 @@ Player.prototype.findValues = function() {
 Player.prototype.largeStraight = function() {
   this.diceValues.sort();
   this.diceValues.toString();
-  console.log(this.diceValues);
   var largeStraightArr1 = [1, 2, 3, 4, 5];
   var largeStraightArr2 = [2, 3, 4, 5, 6];
   if (this.diceValues.toString() === largeStraightArr1.toString()) {
@@ -92,7 +91,7 @@ Player.prototype.largeStraight = function() {
 }
 
 Player.prototype.yahtzee = function() {
-  if ((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4]) && (this.diceValues[1] === this.diceValues[4])) {
+  if (((this.diceValues[0] === this.diceValues[1]) && (this.diceValues[2] === this.diceValues[3]) && (this.diceValues[3] === this.diceValues[4]) && (this.diceValues[1] === this.diceValues[4])) && (this.diceValues[0] !== 0)) {
     return true;
   } else {
     return false;
@@ -147,7 +146,7 @@ Game.prototype.findWinner = function() {
   if (this.players[0].topTotal > this.players[1].topTotal) {
     this.winner = this.players[0].playerName;
   } else if (this.players[0].topTotal === this.players[1].topTotal) {
-    this.winner = "Tie game!"
+    this.winner = "No one"
   } else {
     this.winner = this.players[1].playerName;
   }
@@ -351,9 +350,10 @@ $(document).ready(function() {
     // game.players[game.turn].largeStraight();
       if (game.players[game.turn].largeStraight() === true) {
         game.players[game.turn].scores[6][0] = 40;
-        game.topTotals();
         $("#player" + (game.turn+1) + "LargeStraight").append(game.players[game.turn].scores[6][0]);
         game.players[game.turn].scores[6][1] =  true;
+        game.topTotals();
+        $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
         game.switchTurn();
         displayDice();
       } else {
@@ -361,9 +361,10 @@ $(document).ready(function() {
         if (largeStraightPrompt.toLowerCase() === "yes") {
             alert("okay you fool")
             game.players[game.turn].scores[6][0] = 0;
-            game.topTotals();
             $("#player" + (game.turn+1) + "LargeStraight").append(game.players[game.turn].scores[6][0]);
             game.players[game.turn].scores[6][1] =  true;
+            game.topTotals();
+            $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
             game.gameOver();
             game.switchTurn();
             displayDice();
@@ -377,9 +378,10 @@ $(document).ready(function() {
   $("#fullHouseButton").click(function(){
     if (game.players[game.turn].fullHouse() === true) {
       game.players[game.turn].scores[7][0] = 25;
-      game.topTotals();
       $("#player" + (game.turn+1) + "FullHouse").append(game.players[game.turn].scores[7][0]);
       game.players[game.turn].scores[7][1] =  true;
+      game.topTotals();
+      $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
       game.gameOver();
       game.switchTurn();
       displayDice();
@@ -388,9 +390,10 @@ $(document).ready(function() {
       if (fullHousePrompt.toLowerCase() === "yes") {
           alert("okay, your loss");
           game.players[game.turn].scores[7][0] = 0;
-          game.topTotals();
           $("#player" + (game.turn+1) + "FullHouse").append(game.players[game.turn].scores[7][0]);
           game.players[game.turn].scores[7][1] =  true;
+          game.topTotals();
+          $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
           game.gameOver();
           game.switchTurn();
           displayDice();
@@ -403,20 +406,22 @@ $(document).ready(function() {
   $("#yahtzeeButton").click(function(){
     if (game.players[game.turn].yahtzee() === true) {
       game.players[game.turn].scores[8][0] = 50;
-      game.topTotals();
-      $("#player" + (game.turn+1) + "Yahtzee").append(50);
+      $("#player" + (game.turn+1) + "Yahtzee").append(game.players[game.turn].scores[8][0]);
       game.players[game.turn].scores[8][1] =  true;
+      game.topTotals();
+      $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
       game.gameOver();
       game.switchTurn();
       displayDice();
   } if (game.players[game.turn].yahtzee() === false) {
       var yahtzeePrompt = prompt("you do not have a Yahtzee, an average player has about a 1:1200 chance of a yathzee on any given roll...you are no differnet. do you wish to take a zero for your yahtzee turn? (yes/no)")
-      if (yahtzeePrompt.toLowerCase() === "yes") {
+      if (yahtzeePrompt === "yes") {
           alert("okay you fool")
           game.players[game.turn].scores[8][0] = 0;
-          game.topTotals();
           $("#player" + (game.turn+1) + "Yahtzee").append(game.players[game.turn].scores[8][0]);
           game.players[game.turn].scores[8][1] =  true;
+          game.topTotals();
+          $(".topTotal" + (game.turn+1)).text(game.players[game.turn].topTotal);
           game.gameOver();
           game.switchTurn();
           displayDice();
